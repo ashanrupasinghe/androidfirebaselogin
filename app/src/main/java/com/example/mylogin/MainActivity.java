@@ -27,6 +27,7 @@ public class MainActivity extends AppCompatActivity {
     private  TextView userRegistration;
     private FirebaseAuth firebaseAuth;
     private ProgressDialog progressDialog;
+    protected TextView forgetPassword;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,9 +42,10 @@ public class MainActivity extends AppCompatActivity {
         Info.setText("Number of attempts remaining: 5");
         firebaseAuth = FirebaseAuth.getInstance();
         progressDialog = new ProgressDialog(this);
+        forgetPassword = (TextView) findViewById(R.id.tvForgotPassword);
         FirebaseUser user = firebaseAuth.getCurrentUser();
         if(user!=null){
-            //finish();
+            finish();
             startActivity(new Intent(MainActivity.this,SecondActivity.class));
         }
 
@@ -58,6 +60,13 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(MainActivity.this,RegistrationActivity.class));
+            }
+        });
+
+        forgetPassword.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(MainActivity.this,PasswordActivity.class));
             }
         });
     }
@@ -93,7 +102,7 @@ public class MainActivity extends AppCompatActivity {
             finish();
             startActivity(new Intent(MainActivity.this,SecondActivity.class));
         }else{
-            Toast.makeText(this,"Verify Your Email",Toast.LENGTH_LONG);
+            Toast.makeText(this,"Verify Your Email",Toast.LENGTH_SHORT).show();
             firebaseAuth.signOut();
         }
     }

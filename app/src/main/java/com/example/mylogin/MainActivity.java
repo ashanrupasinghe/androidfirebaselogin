@@ -33,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Name = (EditText)findViewById(R.id.etName);
+        Name = (EditText)findViewById(R.id.etEmailUpdate);
         Password = (EditText)findViewById(R.id.etPassword);
         Info = (TextView)findViewById(R.id.tvInfo);
         Login = (Button)findViewById(R.id.btnLogin);
@@ -96,6 +96,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void checkEmailVerification(){
+        startActivity(new Intent(MainActivity.this,SecondActivity.class));
+        /*
         FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
         Boolean emailflag = firebaseUser.isEmailVerified();
         if(emailflag){
@@ -105,5 +107,6 @@ public class MainActivity extends AppCompatActivity {
             Toast.makeText(this,"Verify Your Email",Toast.LENGTH_SHORT).show();
             firebaseAuth.signOut();
         }
+        */
     }
 }
